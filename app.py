@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-VERIFY_TOKEN = os.environ.get("VERIFY_TOKEN", "mein_geheimer_token")
+VERIFY_TOKEN = "mein_geheimer_token"
 WHATSAPP_TOKEN = os.environ.get("WHATSAPP_TOKEN")
 PHONE_NUMBER_ID = os.environ.get("PHONE_NUMBER_ID")
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
@@ -62,7 +62,7 @@ def verify():
     token = request.args.get("hub.verify_token")
     challenge = request.args.get("hub.challenge")
 
-    if mode == "subscribe" and token and token.strip() == VERIFY_TOKEN.strip():
+    if mode == "subscribe" and token and token.strip() == VERIFY_TOKEN:
         return challenge, 200
     return "Fehler", 403
 
