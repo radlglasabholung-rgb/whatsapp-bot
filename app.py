@@ -62,7 +62,7 @@ def verify():
     token = request.args.get("hub.verify_token")
     challenge = request.args.get("hub.challenge")
 
-    if mode == "subscribe" and token == VERIFY_TOKEN:
+    if mode == "subscribe" and token and token.strip() == VERIFY_TOKEN.strip():
         return challenge, 200
     return "Fehler", 403
 
